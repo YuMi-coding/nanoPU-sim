@@ -1,6 +1,7 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 from scapy.all import *
+from scapy.all import IP, Ether
 from nanoPU_sim import * # Note the cyclic dependency here!
 from headers import *
 from sim_utils import *
@@ -130,7 +131,7 @@ class IngressPipe(object):
                 grant_offset = self.credit[rx_msg_id]
 
                 # determine priority of this message
-                prio = sef.getPriority(msg_len)
+                prio = self.getPriority(msg_len) # YM: sef -> slelf
 
                 # NOTE: I am not sure if the operations below are feasible
                 #       Maybe we can define something like Read-Modify-(Delete/Write)?
@@ -257,7 +258,7 @@ class EgressPipe(object):
                                   msg_len=meta.msg_len,
                                   pkt_offset=meta.pkt_offset,
                                   unscheduled_pkts=Simulator.rtt_pkts,
-                                  prio=sef.getPriority(meta.msg_len),
+                                  prio=self.getPriority(meta.msg_len),
                                   tx_msg_id=meta.tx_msg_id)/pkt
             else:
                 self.log('Processing control pkt: {} - {}'.format(pkt[HOMA].op_code,

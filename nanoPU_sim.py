@@ -30,7 +30,7 @@ class Logger(object):
 
     def log(self, s):
         if self.debug:
-            print '{}: {}'.format(self.env.now, s)
+            print('{}: {}'.format(self.env.now, s))
 
 def DistGenerator(varname):
     dist = Simulator.config[varname].next()
@@ -85,7 +85,7 @@ def DistGenerator(varname):
         elif dist == 'custom':
             yield random.choice(custom_samples)
         else:
-            print 'ERROR: Unsupported distrbution: {}'.format(dist)
+            print('ERROR: Unsupported distrbution: {}'.format(dist))
             sys.exit(1)
 
 def compute_num_pkts(msg_len):
@@ -713,17 +713,17 @@ class Simulator(object):
             if msg in Simulator.rx_msgs:
                 Simulator.rx_msgs.remove(msg)
             else:
-                print "ERROR: msg was transmitted but not received"
+                print("ERROR: msg was transmitted but not received")
                 msg.show()
                 hexdump(msg)
         if len(Simulator.rx_msgs) > 0:
-            print "ERROR: msgs were received but not transmitted:"
+            print("ERROR: msgs were received but not transmitted:")
             for i in range(len(Simulator.rx_msgs)):
-                print "msg {}:".format(i)
+                print("msg {}:".format(i))
                 Simulator.rx_msgs[i].show()
                 hexdump(Simulator.rx_msgs[i])
         else:
-            print "SUCCESS: all msgs were successfully delivered!"
+            print("SUCCESS: all msgs were successfully delivered!")
 
     def dump_run_logs(self):
         """Dump any logs recorded during this run of the simulation"""

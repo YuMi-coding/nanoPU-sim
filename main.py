@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 import argparse
 import simpy
@@ -57,7 +57,7 @@ def run_sim(cmdline_args, *args):
             Simulator.env = env
             s = Simulator(protocolModule,*args)
 
-            print 'Running simulation {} ...'.format(run_cnt)
+            print('Running simulation {} ...'.format(run_cnt))
 
             tic = time.time()
             env.run()
@@ -75,7 +75,7 @@ def run_sim(cmdline_args, *args):
             s.dump_run_logs()
             run_cnt += 1
     except StopIteration:
-        print 'All Simulations Complete!'
+        print('All Simulations Complete!')
 
 def main():
     args = cmd_parser.parse_args()

@@ -1,6 +1,7 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 from scapy.all import *
+from scapy.all import IP, Ether
 from nanoPU_sim import * # Note the cyclic dependency here!
 from headers import *
 from sim_utils import *
